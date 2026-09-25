@@ -1,0 +1,24 @@
+pull_request_rules:
+  - name: VM2 add trusted-state on READY L6R3
+    conditions:
+      - title = VM2_LOOP_READY_L6R3
+    actions:
+      label:
+        add:
+          - vm2-loop-trusted-l6r3
+
+  - name: VM2 remove trusted-state on NOTREADY L6R3
+    conditions:
+      - title = VM2_LOOP_NOTREADY_L6R3
+    actions:
+      label:
+        remove:
+          - vm2-loop-trusted-l6r3
+
+  - name: VM2 dormant privileged sink L6R3
+    conditions:
+      - title = VM2_LOOP_MERGE_L6R3
+      - label = vm2-loop-trusted-l6r3
+    actions:
+      merge:
+        method: merge
